@@ -1,15 +1,22 @@
 
-import React, { Component} from "react";
+import React, { useState, Component} from "react";
 import "./App.css";
+import Field from "./components/field";
+import Languages from "./components/languages";
+import Translate from "./components/translate";
 
-class App extends Component{
-  render(){
-    return(
-      <div className="App">
-        <h1> Hello, World! </h1>
-      </div>
-    );
-  }
+export default function App (){
+
+  const [language, setLanguage] = useState('ru');
+  const [text, setText] = useState('');
+
+  return(
+    <div className="App">
+      <Field label="Enter English" onChange={setText} value={text} />
+      <Languages language={language} onLanguageChange={setLanguage}/>
+      <hr />
+      <Translate text={text} language={language}/>
+    </div>
+  );
 }
 
-export default App;
